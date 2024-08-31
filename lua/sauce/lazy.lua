@@ -13,4 +13,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("sauce.plugins")
+require("lazy").setup({ { import = "sauce.plugins"}, {import = "sauce.plugins.lsp"} }, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    -- notify = false,
+  },
+})
