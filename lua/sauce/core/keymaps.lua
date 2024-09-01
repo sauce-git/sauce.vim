@@ -35,5 +35,4 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 keymap.set("n", "<leader>tt", "<cmd>botright 10split term://zsh<CR>", { desc = "Open terminal in split window" }) -- open terminal in split window
-keymap.set("n", "<leader>tc", "<cmd>term<CR>", { desc = "Open terminal in new window" }) -- open terminal in new window  
-
+keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal" }) -- exit terminal

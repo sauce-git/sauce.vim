@@ -17,6 +17,7 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     local keymap = vim.keymap -- for conciseness
+    
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -44,7 +45,7 @@ return {
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-        opts.desc = "Smart rename"
+        -- opts.desc = "Smart rename"
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
         opts.desc = "Show buffer diagnostics"
@@ -107,11 +108,17 @@ return {
           filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
         })
       end,
-      ["emmet_ls"] = function()
-        -- configure emmet language server
-        lspconfig["emmet_ls"].setup({
+      -- ["emmet_ls"] = function()
+      --   -- configure emmet language server
+      --   lspconfig["emmet_ls"].setup({
+      --     capabilities = capabilities,
+      --     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+      --   })
+      -- end,
+      ["eslint"] = function ()
+        lspconfig["eslint"].setup({
           capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+          -- filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
         })
       end,
       ["lua_ls"] = function()
@@ -129,6 +136,24 @@ return {
               },
             },
           },
+        })
+      end,
+      ["tsserver"] = function()
+        -- configure typescript server
+        lspconfig["tsserver"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["rust_analyzer"] = function()
+        -- configure rust server
+        lspconfig["rust_analyzer"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["prismals"] = function()
+        -- configure prisma server
+        lspconfig["prismals"].setup({
+          capabilities = capabilities,
         })
       end,
     })
