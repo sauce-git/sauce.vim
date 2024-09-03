@@ -21,6 +21,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				rust = { "prettier" },
+        eslint = { "eslint_d" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,

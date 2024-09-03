@@ -49,7 +49,10 @@ return {
 				"black", -- python formatter
 				"pylint", -- pythoh linter
 				"eslint_d", -- js linter
-			},
+        "svelte", -- svelte language server
+        "tsserver", -- typescript language server
+        -- "eslint", -- eslint language server
+			}
 		})
 	end,
 }
