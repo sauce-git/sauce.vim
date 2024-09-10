@@ -20,14 +20,17 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				rust = { "prettier" },
-        eslint = { "eslint_d" },
+				rust = { "rustfmt", lsp_fallback = "fallback" },
+				eslint = { "eslint_d" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,
 			-- 	async = false,
 			-- 	timeout_ms = 1000,
 			-- },
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>fm", function()
