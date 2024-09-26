@@ -39,6 +39,7 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
+        "bufls"
 			},
 		})
 		mason_tool_installer.setup({
