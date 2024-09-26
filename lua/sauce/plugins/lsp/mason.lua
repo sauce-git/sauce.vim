@@ -39,7 +39,9 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
-        "pbls"
+        "pbls",
+        "yamlls",
+        "dockerls"
 			},
 		})
 		mason_tool_installer.setup({
