@@ -39,7 +39,7 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
-        "pbls",
+        "bufls",
         "yamlls",
         "dockerls"
 			},
