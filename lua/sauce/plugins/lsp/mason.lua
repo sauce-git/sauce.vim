@@ -39,9 +39,10 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
-        "bufls",
+        "buf_ls",
         "yamlls",
-        "dockerls"
+        "dockerls",
+        "tailwindcss",
 			},
 		})
 		mason_tool_installer.setup({
@@ -53,7 +54,6 @@ return {
 				"pylint", -- pythoh linter
 				"eslint_d", -- js linter
         "svelte", -- svelte language server
-        "ts_ls", -- typescript language server
         -- "eslint", -- eslint language server
 			}
 		})
