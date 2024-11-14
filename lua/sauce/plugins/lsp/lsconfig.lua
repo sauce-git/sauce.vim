@@ -70,7 +70,7 @@ return {
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
@@ -85,6 +85,31 @@ return {
 			function(server_name)
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
+				})
+			end,
+			["cssls"] = function()
+				-- configure css language server
+				lspconfig["cssls"].setup({
+					capabilities = capabilities,
+					cmd = { "vscode-css-language-server", "--stdio" },
+					filetypes = { "css", "scss", "less" },
+					settings = {
+						css = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+						scss = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+						less = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+					},
 				})
 			end,
 			["svelte"] = function()
