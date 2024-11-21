@@ -13,6 +13,9 @@ return {
 
 		local mason_tool_installer = require("mason-tool-installer")
 
+		--   -- import nvim-java
+		-- local java = require("java")
+
 		-- enable mason and configure icons
 		mason.setup({
 			ui = {
@@ -35,14 +38,14 @@ return {
 				"lua_ls",
 				"graphql",
 				"emmet_ls",
-        "eslint",
+				"eslint",
 				"prismals",
 				"pyright",
 				"rust_analyzer",
-        "buf_ls",
-        "yamlls",
-        "dockerls",
-        "tailwindcss",
+				"buf_ls",
+				"yamlls",
+				"dockerls",
+				"tailwindcss",
 			},
 		})
 		mason_tool_installer.setup({
@@ -53,9 +56,9 @@ return {
 				"black", -- python formatter
 				"pylint", -- pythoh linter
 				"eslint_d", -- js linter
-        "svelte", -- svelte language server
-        -- "eslint", -- eslint language server
-			}
+				"svelte", -- svelte language server
+				-- "eslint", -- eslint language server
+			},
 		})
 	end,
 }
