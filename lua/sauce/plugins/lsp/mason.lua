@@ -1,20 +1,18 @@
 return {
-	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"nvim-java/nvim-java",
 	},
 	config = function()
-		-- import mason
+		-- import dependencies
 		local mason = require("mason")
-
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
-
-		--   -- import nvim-java
-		-- local java = require("java")
+		local java = require("java")
+		local keymap = vim.keymap -- for conciseness
 
 		-- enable mason and configure icons
 		mason.setup({
@@ -25,6 +23,11 @@ return {
 					package_uninstalled = "✗",
 				},
 			},
+		})
+
+		-- enable nvim-java
+		java.setup({
+			-- Your custom nvim-java configuration goes here
 		})
 
 		mason_lspconfig.setup({
@@ -46,8 +49,12 @@ return {
 				"yamlls",
 				"dockerls",
 				"tailwindcss",
+				"bashls",
+				"clangd",
+				"jdtls",
 			},
 		})
+
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier", -- prettier formatter
@@ -57,7 +64,6 @@ return {
 				"pylint", -- pythoh linter
 				"eslint_d", -- js linter
 				"svelte", -- svelte language server
-				-- "eslint", -- eslint language server
 			},
 		})
 	end,
