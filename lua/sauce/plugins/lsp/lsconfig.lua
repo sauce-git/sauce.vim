@@ -60,7 +60,7 @@ return {
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
-                -- Java keymaps
+				-- Java keymaps
 				opts.desc = "Build workspace"
 				keymap.set("n", "<leader>jbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
 				opts.desc = "Clean workspace"
@@ -178,6 +178,18 @@ return {
 					capabilities = capabilities,
 					settings = {
 						java = {
+							configuration = {
+								runtimes = {
+									{
+										name = "JavaSE-11",
+										path = "/usr/lib/jvm/java-11-openjdk",
+									},
+									{
+										name = "JavaSE-23",
+										path = "/usr/lib/jvm/java-23-openjdk",
+									},
+								},
+							},
 							format = {
 								enabled = true,
 								settings = {

@@ -48,11 +48,13 @@ return {
 				"buf_ls",
 				"yamlls",
 				"dockerls",
-				"tailwindcss",
 				"bashls",
 				"clangd",
 				"jdtls",
+        "gradle_ls",
+        "jsonls",
 			},
+      automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
