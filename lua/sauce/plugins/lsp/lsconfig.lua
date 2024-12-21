@@ -65,6 +65,8 @@ return {
 				keymap.set("n", "<leader>jbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
 				opts.desc = "Clean workspace"
 				keymap.set("n", "<leader>jcw", ":JavaBuildCleanWorkspace<CR>", opts) -- clean workspace
+        opts.desc = "DAP config"
+        keymap.set("n", "<leader>jd", ":JavaDapConfig<CR>", opts) -- DAP config
 				opts.desc = "Run app"
 				keymap.set("n", "<leader>jr", ":JavaRunnerRunMain<CR>", opts) -- run
 				opts.desc = "Stop app"
