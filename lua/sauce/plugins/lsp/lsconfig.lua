@@ -9,7 +9,6 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
-		local util = lspconfig.util
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
@@ -62,41 +61,31 @@ return {
 
 				-- Java keymaps
 				opts.desc = "Build workspace"
-				keymap.set("n", "<leader>jbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
+				keymap.set("n", "<leader>jvbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
 				opts.desc = "Clean workspace"
-				keymap.set("n", "<leader>jcw", ":JavaBuildCleanWorkspace<CR>", opts) -- clean workspace
+				keymap.set("n", "<leader>jvcw", ":JavaBuildCleanWorkspace<CR>", opts) -- clean workspace
         opts.desc = "DAP config"
-        keymap.set("n", "<leader>jd", ":JavaDapConfig<CR>", opts) -- DAP config
+        keymap.set("n", "<leader>jvd", ":JavaDapConfig<CR>", opts) -- DAP config
 				opts.desc = "Run app"
-				keymap.set("n", "<leader>jr", ":JavaRunnerRunMain<CR>", opts) -- run
+				keymap.set("n", "<leader>jvr", ":JavaRunnerRunMain<CR>", opts) -- run
 				opts.desc = "Stop app"
-				keymap.set("n", "<leader>js", ":JavaRunnerStopMain<CR>", opts) -- stop
+				keymap.set("n", "<leader>jvs", ":JavaRunnerStopMain<CR>", opts) -- stop
 				opts.desc = "Toggle logs"
-				keymap.set("n", "<leader>jlt", ":JavaRunnerToggleLogs<CR>", opts) -- toggle logs
-				opts.desc = "Switch logs"
-				keymap.set("n", "<leader>jls", ":JavaRunnerSwitchLogs<CR>", opts) -- switch app
-				opts.desc = "Extract variable"
-				keymap.set("n", "<leader>jev", ":JavaRefactorExtractVariable<CR>", opts) -- stop
-				opts.desc = "Extract method"
-				keymap.set("n", "<leader>jem", ":JavaRefactorExtractMethod<CR>", opts) -- stop
-				opts.desc = "Extract constant"
-				keymap.set("n", "<leader>jec", ":JavaRefactorExtractConstant<CR>", opts) -- stop
-				opts.desc = "Extract field"
-				keymap.set("n", "<leader>jef", ":JavaRefactorExtractField<CR>", opts) -- stop
+				keymap.set("n", "<leader>jvtl", ":JavaRunnerToggleLogs<CR>", opts) -- toggle logs
 				opts.desc = "Change runtime"
-				keymap.set("n", "<leader>jcr", ":JavaSettingsChangeRuntime<CR>", opts) -- stop
+				keymap.set("n", "<leader>jvcr", ":JavaSettingsChangeRuntime<CR>", opts) -- stop
 
         -- Flutter keymaps
         opts.desc = "Run flutter"
         keymap.set("n", "<leader>flr", ":FlutterRun<CR>", opts) -- run
         opts.desc = "Stop flutter"
-        keymap.set("n", "<leader>fls", ":FlutterStop<CR>", opts) -- stop
+        keymap.set("n", "<leader>fls", ":FlutterQuit<CR>", opts) -- stop
         opts.desc = "Emulators"
         keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", opts) -- emulator
         opts.desc = "Devices"
         keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", opts) -- devices
         opts.desc = "Toggle log"
-        keymap.set("n", "<leader>flt", ":FlutterToggleLog<CR>", opts) -- toggle log
+        keymap.set("n", "<leader>fltl", ":FlutterLogToggle<CR>", opts) -- toggle log
 
 			end,
 		})
