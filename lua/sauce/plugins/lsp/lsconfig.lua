@@ -85,6 +85,19 @@ return {
 				keymap.set("n", "<leader>jef", ":JavaRefactorExtractField<CR>", opts) -- stop
 				opts.desc = "Change runtime"
 				keymap.set("n", "<leader>jcr", ":JavaSettingsChangeRuntime<CR>", opts) -- stop
+
+        -- Flutter keymaps
+        opts.desc = "Run flutter"
+        keymap.set("n", "<leader>flr", ":FlutterRun<CR>", opts) -- run
+        opts.desc = "Stop flutter"
+        keymap.set("n", "<leader>fls", ":FlutterStop<CR>", opts) -- stop
+        opts.desc = "Emulators"
+        keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", opts) -- emulator
+        opts.desc = "Devices"
+        keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", opts) -- devices
+        opts.desc = "Toggle log"
+        keymap.set("n", "<leader>flt", ":FlutterToggleLog<CR>", opts) -- toggle log
+
 			end,
 		})
 
