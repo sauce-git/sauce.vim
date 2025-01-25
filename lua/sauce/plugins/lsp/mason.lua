@@ -12,7 +12,6 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 		local java = require("java")
-		local keymap = vim.keymap -- for conciseness
 
 		-- enable mason and configure icons
 		mason.setup({

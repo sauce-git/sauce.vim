@@ -27,67 +27,60 @@ return {
 				local opts = { buffer = ev.buf, silent = true }
 
 				-- set keybinds
-				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" }) -- show definition, references
+				keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
+				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
+				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" }) -- show lsp implementations
+				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" }) -- show lsp type definitions
 
-				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" }) -- see available code actions, in visual mode will apply to selection
 
-				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" }) -- smart rename
 
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+				keymap.set(
+					"n",
+					"<leader>D",
+					"<cmd>Telescope diagnostics bufnr=0<CR>",
+					{ desc = "Show buffer diagnostics" }
+				) -- show  diagnostics for file
+				keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" }) -- show diagnostics for line
+				keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" }) -- jump to previous diagnostic in buffer
+				keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" }) -- jump to next diagnostic in buffer
 
-				opts.desc = "Show documentation for what is under cursor"
-				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+				keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
 
-				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+				keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" }) -- mapping to restart lsp if necessary
 
 				-- Java keymaps
-				opts.desc = "Build workspace"
-				keymap.set("n", "<leader>jvbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
-				opts.desc = "Clean workspace"
-				keymap.set("n", "<leader>jvcw", ":JavaBuildCleanWorkspace<CR>", opts) -- clean workspace
-				opts.desc = "DAP config"
-				keymap.set("n", "<leader>jvd", ":JavaDapConfig<CR>", opts) -- DAP config
-				opts.desc = "Run app"
-				keymap.set("n", "<leader>jvr", ":JavaRunnerRunMain<CR>", opts) -- run
-				opts.desc = "Stop app"
-				keymap.set("n", "<leader>jvs", ":JavaRunnerStopMain<CR>", opts) -- stop
-				opts.desc = "Toggle logs"
-				keymap.set("n", "<leader>jvtl", ":JavaRunnerToggleLogs<CR>", opts) -- toggle logs
-				opts.desc = "Change runtime"
-				keymap.set("n", "<leader>jvcr", ":JavaSettingsChangeRuntime<CR>", opts) -- stop
+				keymap.set("n", "<leader>jvbw", ":JavaBuildBuildWorkspace<CR>", { desc = "Build workspace" }) -- build workspace
+				keymap.set("n", "<leader>jvcw", ":JavaBuildCleanWorkspace<CR>", { desc = "Clean workspace" }) -- clean workspace
+				keymap.set("n", "<leader>jvd", ":JavaDapConfig<CR>", { desc = "DAP config" }) -- DAP config
+				keymap.set("n", "<leader>jvr", ":JavaRunnerRunMain<CR>", { desc = "Run app" }) -- run
+				keymap.set("n", "<leader>jvs", ":JavaRunnerStopMain<CR>", { desc = "Stop app" }) -- stop
+				keymap.set("n", "<leader>jvtl", ":JavaRunnerToggleLogs<CR>", { desc = "Toggle logs" }) -- toggle logs
+				keymap.set("n", "<leader>jvcr", ":JavaSettingsChangeRuntime<CR>", { desc = "Change runtime" }) -- stop
 
 				-- Flutter keymaps
-				opts.desc = "Run flutter"
-				keymap.set("n", "<leader>flr", ":FlutterRun<CR>", opts) -- run
-				opts.desc = "Stop flutter"
-				keymap.set("n", "<leader>fls", ":FlutterQuit<CR>", opts) -- stop
-				opts.desc = "Emulators"
-				keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", opts) -- emulator
-				opts.desc = "Devices"
-				keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", opts) -- devices
-				opts.desc = "Toggle log"
-				keymap.set("n", "<leader>fltl", ":FlutterLogToggle<CR>", opts) -- toggle log
+				keymap.set("n", "<leader>flr", ":FlutterRun<CR>", { desc = "Run flutter" }) -- run
+				keymap.set("n", "<leader>fls", ":FlutterQuit<CR>", { desc = "Stop flutter" }) -- stop
+				keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", { desc = "Emulators" }) -- emulator
+				keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", { desc = "Devices" }) -- devices
+				keymap.set("n", "<leader>fltl", ":FlutterLogToggle<CR>", { desc = "Toggle log" }) -- toggle log
 			end,
 		})
+
+		local on_attach = function(client, bufnr)
+			-- format on save
+			if client.server_capabilities.documentFormattingProvider then
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = vim.api.nvim_create_augroup("Format", { clear = true }),
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format()
+					end,
+				})
+			end
+		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -214,6 +207,13 @@ return {
 							},
 						},
 					},
+				})
+			end,
+			["pyright"] = function()
+				-- configure python server
+				lspconfig["pyright"].setup({
+					on_attach = on_attach,
+					capabilities = capabilities,
 				})
 			end,
 		})
