@@ -64,8 +64,8 @@ return {
 				keymap.set("n", "<leader>jvbw", ":JavaBuildBuildWorkspace<CR>", opts) -- build workspace
 				opts.desc = "Clean workspace"
 				keymap.set("n", "<leader>jvcw", ":JavaBuildCleanWorkspace<CR>", opts) -- clean workspace
-        opts.desc = "DAP config"
-        keymap.set("n", "<leader>jvd", ":JavaDapConfig<CR>", opts) -- DAP config
+				opts.desc = "DAP config"
+				keymap.set("n", "<leader>jvd", ":JavaDapConfig<CR>", opts) -- DAP config
 				opts.desc = "Run app"
 				keymap.set("n", "<leader>jvr", ":JavaRunnerRunMain<CR>", opts) -- run
 				opts.desc = "Stop app"
@@ -75,18 +75,17 @@ return {
 				opts.desc = "Change runtime"
 				keymap.set("n", "<leader>jvcr", ":JavaSettingsChangeRuntime<CR>", opts) -- stop
 
-        -- Flutter keymaps
-        opts.desc = "Run flutter"
-        keymap.set("n", "<leader>flr", ":FlutterRun<CR>", opts) -- run
-        opts.desc = "Stop flutter"
-        keymap.set("n", "<leader>fls", ":FlutterQuit<CR>", opts) -- stop
-        opts.desc = "Emulators"
-        keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", opts) -- emulator
-        opts.desc = "Devices"
-        keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", opts) -- devices
-        opts.desc = "Toggle log"
-        keymap.set("n", "<leader>fltl", ":FlutterLogToggle<CR>", opts) -- toggle log
-
+				-- Flutter keymaps
+				opts.desc = "Run flutter"
+				keymap.set("n", "<leader>flr", ":FlutterRun<CR>", opts) -- run
+				opts.desc = "Stop flutter"
+				keymap.set("n", "<leader>fls", ":FlutterQuit<CR>", opts) -- stop
+				opts.desc = "Emulators"
+				keymap.set("n", "<leader>fle", ":FlutterEmulators<CR>", opts) -- emulator
+				opts.desc = "Devices"
+				keymap.set("n", "<leader>fld", ":FlutterDevices<CR>", opts) -- devices
+				opts.desc = "Toggle log"
+				keymap.set("n", "<leader>fltl", ":FlutterLogToggle<CR>", opts) -- toggle log
 			end,
 		})
 
@@ -199,6 +198,19 @@ return {
 								settings = {
 									url = "./formats/java.xml",
 								},
+							},
+						},
+					},
+				})
+			end,
+			["yamlls"] = function()
+				-- configure yaml server
+				lspconfig["yamlls"].setup({
+					capabilities = capabilities,
+					settings = {
+						yaml = {
+							schemas = {
+								kubernetes = "/*.yaml",
 							},
 						},
 					},

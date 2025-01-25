@@ -53,6 +53,7 @@ return {
 				"jdtls",
         "gradle_ls",
         "jsonls",
+        "yamlls",
 			},
       automatic_installation = true,
 		})
