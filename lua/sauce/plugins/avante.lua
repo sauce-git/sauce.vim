@@ -46,11 +46,4 @@ return {
 			ft = { "markdown", "Avante" },
 		},
 	},
-	keys = {
-		{ "<leader>avb", "<cmd>AvanteBuild<cr>", { desc = "Build dependencies for the project" } },
-		{ "<leader>avc", "<cmd>AvanteChat<cr>", { desc = "Open Avante Chat" } },
-		{ "<leader>avt", "<cmd>AvanteToggle<cr>", { desc = "Toggle Avante" } },
-		{ "<leader>avf", "<cmd>AvanteFocus<cr>", { desc = "Switch focus to/from the sidebar" } },
-		{ "<leader>ave", "<cmd>AvanteEdit<cr>", { desc = "Edit the selected code blocks" } },
-	},
 }
