@@ -45,16 +45,15 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"buf_ls",
-				"yamlls",
 				"dockerls",
 				"bashls",
 				"clangd",
 				"jdtls",
-        "gradle_ls",
-        "jsonls",
+				"gradle_ls",
+				"jsonls",
         "yamlls",
 			},
-      automatic_installation = true,
+			automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
