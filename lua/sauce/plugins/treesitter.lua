@@ -11,6 +11,15 @@ return {
 
 		-- configure treesitter
 		treesitter.setup({ -- enable syntax highlighting
+			modules = {
+				highlight = {
+					enable = true,
+					disable = false,
+				},
+			},
+			ignore_install = {},
+      sync_install = true,
+      auto_install = true,
 			highlight = {
 				enable = true,
 			},
@@ -49,6 +58,7 @@ return {
 				"java",
 				"kotlin",
 				"json",
+        "dart",
 			},
 			incremental_selection = {
 				enable = true,
