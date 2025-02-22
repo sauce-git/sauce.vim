@@ -201,11 +201,7 @@ return {
 				lspconfig["yamlls"].setup({
 					capabilities = capabilities,
 					settings = {
-						yaml = {
-							schemas = {
-								kubernetes = "*.yaml",
-							},
-						},
+						yaml = {},
 					},
 				})
 			end,
