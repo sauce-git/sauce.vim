@@ -26,7 +26,9 @@ return {
 
 		-- enable nvim-java
 		java.setup({
-			-- Your custom nvim-java configuration goes here
+			jdk = {
+				auto_install = false,
+			},
 		})
 
 		mason_lspconfig.setup({
@@ -48,10 +50,10 @@ return {
 				"dockerls",
 				"bashls",
 				"clangd",
-				"jdtls",
+				-- "jdtls",
 				"gradle_ls",
 				"jsonls",
-        "yamlls",
+				"yamlls",
 			},
 			automatic_installation = true,
 		})
