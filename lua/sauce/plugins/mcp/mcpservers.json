@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "figma-context": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=${FIGMA_API_KEY}",
+        "--stdio"
+      ],
+      "custom_instructions": {
+        "disabled": false,
+        "instructions": "You have access to Figma design data through this MCP server. Use the provided tools to fetch design information and assets when needed."
+      }
+    }
+  }
+}
+
