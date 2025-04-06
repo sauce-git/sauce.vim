@@ -54,6 +54,7 @@ return {
 				"gradle_ls",
 				"jsonls",
 				"yamlls",
+        "lemminx",
 			},
 			automatic_installation = true,
 		})
