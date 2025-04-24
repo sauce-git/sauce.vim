@@ -22,15 +22,16 @@ return {
 				python = { "isort", "black" },
 				rust = { "rustfmt", lsp_fallback = "fallback" },
 				eslint = { "eslint_d" },
+				dart = { "dart_format" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,
 			-- 	async = false,
 			-- 	timeout_ms = 1000,
 			-- },
-      default_format_opts = {
-        lsp_format = "fallback",
-      },
+			default_format_opts = {
+				lsp_format = "fallback",
+			},
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>fm", function()
