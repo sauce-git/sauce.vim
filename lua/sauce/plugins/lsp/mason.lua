@@ -54,7 +54,8 @@ return {
 				"gradle_ls",
 				"jsonls",
 				"yamlls",
-        "lemminx",
+				"lemminx",
+				"terraformls",
 			},
 			automatic_installation = true,
 		})
