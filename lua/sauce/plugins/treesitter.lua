@@ -59,7 +59,6 @@ return {
 				"kotlin",
 				"json",
 				"dart",
-				"bufls",
 				"terraform",
 				"proto",
 			},
