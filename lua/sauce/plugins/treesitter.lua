@@ -18,8 +18,8 @@ return {
 				},
 			},
 			ignore_install = {},
-      sync_install = true,
-      auto_install = true,
+			sync_install = true,
+			auto_install = true,
 			highlight = {
 				enable = true,
 			},
@@ -58,7 +58,10 @@ return {
 				"java",
 				"kotlin",
 				"json",
-        "dart",
+				"dart",
+				"bufls",
+				"terraform",
+				"proto",
 			},
 			incremental_selection = {
 				enable = true,
