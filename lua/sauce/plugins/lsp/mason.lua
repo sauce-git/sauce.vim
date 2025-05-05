@@ -56,6 +56,7 @@ return {
 				"yamlls",
 				"lemminx",
 				"terraformls",
+				"jinja_lsp",
 			},
 			automatic_installation = true,
 		})

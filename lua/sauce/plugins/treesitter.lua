@@ -61,6 +61,7 @@ return {
 				"dart",
 				"terraform",
 				"proto",
+        "jinja",
 			},
 			incremental_selection = {
 				enable = true,

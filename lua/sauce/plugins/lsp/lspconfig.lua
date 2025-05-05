@@ -17,6 +17,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap -- for conciseness
+		local autocmd = vim.api.nvim_create_autocmd
 
 		-- Keymaps for LSP
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -207,6 +208,13 @@ return {
 				lspconfig["pyright"].setup({
 					on_attach = on_attach,
 					capabilities = capabilities,
+				})
+			end,
+			["jinja_lsp"] = function()
+				-- configure jinja server
+				lspconfig["jinja_lsp"].setup({
+					capabilities = capabilities,
+					filetypes = { "j2", "jinja", "jinja2" },
 				})
 			end,
 		})
