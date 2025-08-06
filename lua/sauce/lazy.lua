@@ -17,7 +17,7 @@ require("lazy").setup({
 	{ import = "sauce.plugins" },
 	{ import = "sauce.plugins.lsp" },
 	{ import = "sauce.plugins.colorscheme" },
-	{ import = "sauce.plugins.mcp" },
+	-- { import = "sauce.plugins.mcp" },
 }, {
 	checker = {
 		enabled = true,

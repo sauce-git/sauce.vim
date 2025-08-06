@@ -24,7 +24,6 @@ return {
 				eslint = { "eslint_d" },
 				dart = { "dart_format" },
 				terraform = { "terraform_fmt" },
-				proto = { "buf" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,

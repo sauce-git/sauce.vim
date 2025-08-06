@@ -4,14 +4,12 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"nvim-java/nvim-java",
 	},
 	config = function()
 		-- import dependencies
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-		local java = require("java")
 
 		-- enable mason and configure icons
 		mason.setup({
@@ -21,13 +19,6 @@ return {
 					package_pending = "➜",
 					package_uninstalled = "✗",
 				},
-			},
-		})
-
-		-- enable nvim-java
-		java.setup({
-			jdk = {
-				auto_install = false,
 			},
 		})
 
@@ -46,17 +37,17 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
-				"buf_ls",
+				-- "protols",
+        "buf_ls",
 				"dockerls",
 				"bashls",
 				"clangd",
-				-- "jdtls",
-				"gradle_ls",
 				"jsonls",
 				"yamlls",
 				"lemminx",
 				"terraformls",
 				"jinja_lsp",
+        "gopls",
 			},
 			automatic_installation = true,
 		})

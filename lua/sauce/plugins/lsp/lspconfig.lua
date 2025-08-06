@@ -98,132 +98,103 @@ return {
 			},
 		})
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["cssls"] = function()
-				-- configure css language server
-				lspconfig["cssls"].setup({
-					capabilities = capabilities,
-					cmd = { "vscode-css-language-server", "--stdio" },
-					filetypes = { "css", "scss", "less" },
-					settings = {
-						css = {
-							lint = {
-								unknownAtRules = "ignore",
-							},
-						},
-						scss = {
-							lint = {
-								unknownAtRules = "ignore",
-							},
-						},
-						less = {
-							lint = {
-								unknownAtRules = "ignore",
-							},
-						},
-					},
-				})
-			end,
-			["svelte"] = function()
-				-- configure svelte server
-				lspconfig["svelte"].setup({
-					capabilities = capabilities,
-					on_attach = function(client, bufnr)
-						if client.name == "svelte" then
-							vim.api.nvim_create_autocmd("BufWritePost", {
-								pattern = { "*.js", "*.ts" },
-								group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
-								callback = function(ctx)
-									-- Here use ctx.match instead of ctx.file
-									client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-								end,
-							})
-						end
-					end,
-				})
-			end,
-			["graphql"] = function()
-				-- configure graphql language server
-				lspconfig["graphql"].setup({
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-			["jdtls"] = function()
-				-- configure java server
-				lspconfig["jdtls"].setup({
-					capabilities = capabilities,
-					settings = {
-						java = {
-							configuration = {
-								runtimes = {
-									{
-										name = "JavaSE-11",
-										path = "/usr/lib/jvm/java-11-openjdk",
-									},
-									{
-										name = "JavaSE-23",
-										path = "/usr/lib/jvm/java-23-openjdk",
-										default = true,
-									},
-								},
-							},
-							format = {
-								enabled = true,
-								settings = {
-									url = "./formats/java.xml",
-								},
-							},
-						},
-					},
-				})
-			end,
-			["yamlls"] = function()
-				-- configure yaml server
-				lspconfig["yamlls"].setup({
-					capabilities = capabilities,
-					settings = {
-						yaml = {},
-					},
-				})
-			end,
-			["pyright"] = function()
-				-- configure python server
-				lspconfig["pyright"].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end,
-			["jinja_lsp"] = function()
-				-- configure jinja server
-				lspconfig["jinja_lsp"].setup({
-					capabilities = capabilities,
-					filetypes = { "j2", "jinja", "jinja2" },
-				})
-			end,
-		})
+		-- 	mason_lspconfig.setup_handlers({
+		-- 		-- default handler for installed servers
+		-- 		function(server_name)
+		-- 			lspconfig[server_name].setup({
+		-- 				capabilities = capabilities,
+		-- 			})
+		-- 		end,
+		-- 		["cssls"] = function()
+		-- 			-- configure css language server
+		-- 			lspconfig["cssls"].setup({
+		-- 				capabilities = capabilities,
+		-- 				cmd = { "vscode-css-language-server", "--stdio" },
+		-- 				filetypes = { "css", "scss", "less" },
+		-- 				settings = {
+		-- 					css = {
+		-- 						lint = {
+		-- 							unknownAtRules = "ignore",
+		-- 						},
+		-- 					},
+		-- 					scss = {
+		-- 						lint = {
+		-- 							unknownAtRules = "ignore",
+		-- 						},
+		-- 					},
+		-- 					less = {
+		-- 						lint = {
+		-- 							unknownAtRules = "ignore",
+		-- 						},
+		-- 					},
+		-- 				},
+		-- 			})
+		-- 		end,
+		-- 		["svelte"] = function()
+		-- 			-- configure svelte server
+		-- 			lspconfig["svelte"].setup({
+		-- 				capabilities = capabilities,
+		-- 				on_attach = function(client, bufnr)
+		-- 					if client.name == "svelte" then
+		-- 						vim.api.nvim_create_autocmd("BufWritePost", {
+		-- 							pattern = { "*.js", "*.ts" },
+		-- 							group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+		-- 							callback = function(ctx)
+		-- 								-- Here use ctx.match instead of ctx.file
+		-- 								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+		-- 							end,
+		-- 						})
+		-- 					end
+		-- 				end,
+		-- 			})
+		-- 		end,
+		-- 		["graphql"] = function()
+		-- 			-- configure graphql language server
+		-- 			lspconfig["graphql"].setup({
+		-- 				capabilities = capabilities,
+		-- 				filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+		-- 			})
+		-- 		end,
+		-- 		["lua_ls"] = function()
+		-- 			-- configure lua server (with special settings)
+		-- 			lspconfig["lua_ls"].setup({
+		-- 				capabilities = capabilities,
+		-- 				settings = {
+		-- 					Lua = {
+		-- 						-- make the language server recognize "vim" global
+		-- 						diagnostics = {
+		-- 							globals = { "vim" },
+		-- 						},
+		-- 						completion = {
+		-- 							callSnippet = "Replace",
+		-- 						},
+		-- 					},
+		-- 				},
+		-- 			})
+		-- 		end,
+		-- 		["yamlls"] = function()
+		-- 			-- configure yaml server
+		-- 			lspconfig["yamlls"].setup({
+		-- 				capabilities = capabilities,
+		-- 				settings = {
+		-- 					yaml = {},
+		-- 				},
+		-- 			})
+		-- 		end,
+		-- 		["pyright"] = function()
+		-- 			-- configure python server
+		-- 			lspconfig["pyright"].setup({
+		-- 				on_attach = on_attach,
+		-- 				capabilities = capabilities,
+		-- 			})
+		-- 		end,
+		-- 		["jinja_lsp"] = function()
+		-- 			-- configure jinja server
+		-- 			lspconfig["jinja_lsp"].setup({
+		-- 				capabilities = capabilities,
+		-- 				filetypes = { "j2", "jinja", "jinja2" },
+		-- 			})
+		-- 		end,
+		-- })
 	end,
 }

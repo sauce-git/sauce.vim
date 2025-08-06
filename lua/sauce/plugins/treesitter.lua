@@ -55,12 +55,10 @@ return {
 				"c",
 				"cpp",
 				"nginx",
-				"java",
 				"kotlin",
 				"json",
 				"dart",
 				"terraform",
-				"proto",
         "jinja",
 			},
 			incremental_selection = {
