@@ -1,6 +1,9 @@
 return {
   {
     "snacks.nvim",
+    keys = {
+      { "<leader><space>", false },
+    },
     opts = {
       dashboard = {
         preset = {
