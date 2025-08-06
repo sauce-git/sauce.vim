@@ -19,6 +19,8 @@ return {
       },
       { "<leader>ee", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
       { "<leader>eE", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+      { "<leader>e", false },
+      { "<leader>E", false },
       {
         "<leader>ge",
         function()
