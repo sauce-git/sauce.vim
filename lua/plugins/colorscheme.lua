@@ -65,7 +65,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "zaibatsu", -- set the colorscheme
+      colorscheme = "retrobox", -- set the colorscheme
     },
   },
 }
