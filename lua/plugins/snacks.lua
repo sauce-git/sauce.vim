@@ -3,8 +3,11 @@ return {
     "snacks.nvim",
     keys = {
       { "<leader><space>", false },
+      { "<leader>e", false },
     },
     opts = {
+      explorer = { enabled = false },
+      words = { enabled = false },
       dashboard = {
         preset = {
           pick = function(cmd, opts)
