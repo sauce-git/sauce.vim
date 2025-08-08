@@ -5,3 +5,6 @@ GoogleSubscriptionReceipt
 AppleSubscriptionReceipt
 AppleProductReceipt
 stylua
+Enum
+SchemaType
+Postgres
