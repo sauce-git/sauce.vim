@@ -1,6 +1,7 @@
 return {
   {
     "smjonas/inc-rename.nvim",
+    enabled = false,
     cmd = "IncRename",
     opts = {
       -- the name of the command
@@ -15,7 +16,7 @@ return {
       -- navigating to older entries that may arise due to the behavior of command preview)
       save_in_cmdline_history = true,
       -- the type of the external input buffer to use (currently supports "dressing" or "snacks")
-      input_buffer_type = nil,
+      input_buffer_type = "snacks",
       -- callback to run after renaming, receives the result table (from LSP handler) as an argument
       post_hook = nil,
     },
