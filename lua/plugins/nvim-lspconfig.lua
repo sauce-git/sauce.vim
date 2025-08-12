@@ -10,4 +10,14 @@ return {
       keys[#keys + 1] = { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" }
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        clangd = {
+          filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
+        },
+      },
+    },
+  },
 }

@@ -4,7 +4,9 @@ return {
     opts = {
       -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
       ---@type string[]
-      ensure_installed = {},
+      ensure_installed = {
+        "buf_ls",
+      },
 
       -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
       --
