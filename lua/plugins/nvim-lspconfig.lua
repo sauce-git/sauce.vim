@@ -17,6 +17,13 @@ return {
         clangd = {
           filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
         },
+        buf_ls = {
+          filetypes = { "proto" },
+          init_options = {
+            useDynamicConfiguration = true,
+            useStaticConfiguration = true,
+          },
+        },
       },
     },
   },
