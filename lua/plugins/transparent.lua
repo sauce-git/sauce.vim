@@ -1,9 +1,6 @@
 return {
   {
     "xiyaowong/transparent.nvim",
-    keys = {
-      { "<leader>ts", "<cmd>TransparentToggle<cr>", desc = "Toggle Transparent" },
-    },
     opts = {
       -- table: default groups
       groups = {
