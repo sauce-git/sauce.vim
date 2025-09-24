@@ -20,8 +20,15 @@ vim.defer_fn(function()
     winopts = {
       height = 0.85,
       width = 0.80,
+      on_create = function()
+        vim.keymap.set("t", "<C-j>", "<Down>", { silent = true, buffer = true })
+        vim.keymap.set("t", "<C-k>", "<Up>", { silent = true, buffer = true })
+      end,
     },
   })
+
+  -- Set fzf-lua as the UI selector for code actions
+  fzf.register_ui_select()
 
   vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files" })
   vim.keymap.set("n", "<leader>/", "<cmd>FzfLua live_grep<cr>", { desc = "Live Grep" })

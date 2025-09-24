@@ -17,9 +17,39 @@ if hostname == "sauce-arch" then
   transparent.setup({
     auto = true,
     extra_groups = {
+      -- Completion menu (nvim-cmp)
       "Pmenu",
+      "PmenuSel",
       "PmenuSbar",
+      "PmenuThumb",
+      -- Floating windows
       "FloatBorder",
+      "NormalFloat",
+      -- FZF-lua
+      "FzfLuaNormal",
+      "FzfLuaBorder",
+      "FzfLuaTitle",
+      "FzfLuaPreviewNormal",
+      "FzfLuaPreviewBorder",
+      -- LSP
+      "LspInfoBorder",
+      "LspSignatureActiveParameter",
+      -- Diagnostics
+      "DiagnosticFloatingError",
+      "DiagnosticFloatingWarn",
+      "DiagnosticFloatingInfo",
+      "DiagnosticFloatingHint",
+      -- TreeSitter
+      "TreesitterContext",
+      -- Sidebar and splits
+      "VertSplit",
+      "WinSeparator",
+      -- Status line (lualine)
+      "StatusLine",
+      "StatusLineNC",
+      -- Terminal
+      "TermCursor",
+      "TermCursorNC",
     },
   })
 
@@ -32,14 +62,35 @@ vim.pack.add({
     name = "kanagawa.nvim",
   },
   {
+    src = "https://github.com/scottmckendry/cyberdream.nvim.git",
+    name = "cyberdream.nvim",
+  },
+  {
     src = "https://github.com/zaldih/themery.nvim.git",
     name = "themery.nvim",
   },
 })
 
 vim.defer_fn(function()
-  local ok, themery = pcall(require, "themery")
-  if not ok then
+  local cyberdream_ok, cyberdream = pcall(require, "cyberdream")
+  if not cyberdream_ok then
+    vim.notify("cyberdream.nvim not found", vim.log.levels.ERROR)
+    return
+  end
+  cyberdream.setup({
+    styles = {
+      comments = { italic = true },
+      functions = { bold = true },
+      keywords = { italic = true, bold = true },
+      strings = {},
+      variables = { bold = true },
+    },
+    transparent_bg = true,
+    lualine_bold = true,
+  })
+
+  local themery_ok, themery = pcall(require, "themery")
+  if not themery_ok then
     vim.notify("themery.nvim not found", vim.log.levels.ERROR)
     return
   end
@@ -62,10 +113,16 @@ vim.defer_fn(function()
       "pablo",
       "peachpuff",
       "quiet",
+      "retrobox",
       "ron",
       "shine",
       "slate",
+      "sorbet",
       "torte",
+      "unokai",
+      "vim",
+      "wildcharm",
+      "zaibatsu",
       "zellner",
       {
         name = "kanagawa-lotus",
@@ -78,6 +135,10 @@ vim.defer_fn(function()
       {
         name = "kanagawa-dragon",
         colorscheme = "kanagawa-dragon",
+      },
+      {
+        name = "cyberdream",
+        colorscheme = "cyberdream",
       },
     },
     livePreview = true, -- live preview when cycling through themes
