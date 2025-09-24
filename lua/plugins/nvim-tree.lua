@@ -1,49 +1,51 @@
-return {
+vim.pack.add({
   {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    keys = {
-      { "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" }, -- toggle file explorer
-      { "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle file explorer on current file" }, -- toggle file explorer on current file
-      { "<leader>ec", "<cmd>NvimTreeCollapse<CR>", desc = "Collapse file explorer" }, -- collapse file explorer
-      { "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "Refresh file explorer" }, -- refresh file explorer
-    },
-    opts = {
-      view = {
-        width = 35,
-        number = true,
-        -- relative number = true,
-      },
-      -- change folder arrow icons
-      renderer = {
-        indent_markers = {
-          enable = true,
-        },
-        icons = {
-          glyphs = {
-            folder = {
-              arrow_closed = "", -- arrow when folder is closed
-              arrow_open = "", -- arrow when folder is open
-            },
-          },
-        },
-      },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
-      actions = {
-        open_file = {
-          window_picker = {
-            enable = false,
-          },
-        },
-      },
-      filters = {
-        custom = { ".DS_Store" },
-      },
-      git = {
-        ignore = false,
-      },
-    },
+    src = "https://github.com/nvim-tree/nvim-web-devicons.git",
+    name = "nvim-web-devicons",
   },
-}
+  {
+    src = "https://github.com/nvim-tree/nvim-tree.lua.git",
+    name = "nvim-tree.lua",
+  },
+})
+
+vim.defer_fn(function()
+  local ok, nvim_tree = pcall(require, "nvim-tree")
+  if not ok then
+    vim.notify("nvim-tree not found", vim.log.levels.ERROR)
+    return
+  end
+
+  nvim_tree.setup({
+    sort_by = "case_sensitive",
+    view = {
+      width = 30,
+      side = "left",
+    },
+    renderer = {
+      group_empty = false,
+      icons = {
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = true,
+          git = true,
+        },
+      },
+    },
+    filters = {
+      dotfiles = false,
+    },
+    update_focused_file = {
+      enable = true,
+      update_cwd = false,
+    },
+    git = {
+      enable = true,
+    },
+  })
+
+  vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>")
+
+  print("nvim-tree loaded")
+end, 50)

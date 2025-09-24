@@ -1,38 +1,51 @@
-return {
-  -- add more treesitter parsers
+vim.pack.add({
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
+    src = "https://github.com/nvim-treesitter/nvim-treesitter.git",
+    name = "nvim-treesitter",
   },
+})
 
-  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
-  -- would overwrite `ensure_installed` with the new value.
-  -- If you'd rather extend the default config, use the code below instead:
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add tsx and treesitter
-      vim.list_extend(opts.ensure_installed, {
-        "typescript",
-        "tsx",
-      })
-    end,
-  },
-}
+vim.defer_fn(function()
+  local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+  if not ok then
+    vim.notify("nvim-treesitter not found", vim.log.levels.ERROR)
+    return
+  end
+
+  treesitter.setup({
+    ensure_installed = {
+      "c",
+      "cpp",
+      "go",
+      "lua",
+      "python",
+      "rust",
+      "typescript",
+      "javascript",
+      "html",
+      "css",
+      "json",
+      "yaml",
+      "toml",
+      "markdown",
+      "bash",
+    },
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    indent = {
+      enable = true,
+    },
+    autotag = {
+      enable = true,
+    },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+  })
+
+  print("nvim-treesitter loaded")
+end, 50)

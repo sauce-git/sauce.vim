@@ -1,27 +1,13 @@
-return {
+vim.pack.add({
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    event = "BufReadPost",
-    opts = {
-      suggestion = {
-        enabled = not vim.g.ai_cmp,
-        auto_trigger = true,
-        hide_during_completion = vim.g.ai_cmp,
-        keymap = {
-          accept = "<C-l>",
-          next = "<C-]>",
-          prev = "<C-[>",
-          dismiss = "<C-\\>",
-        },
-      },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-        yaml = true,
-      },
-    },
+    src = "https://github.com/github/copilot.vim.git",
+    name = "copilot",
   },
-}
+})
+
+vim.keymap.set('i', '<C-l>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+
+vim.g.copilot_no_tab_map = true
