@@ -1,40 +1,42 @@
-return {
+vim.pack.add({
   {
-    "stevearc/conform.nvim",
-    dependencies = { "mason.nvim" },
-    opts = function()
-      ---@type conform.setupOpts
-      local opts = {
-        default_format_opts = {
-          timeout_ms = 3000,
-          async = false, -- not recommended to change
-          quiet = false, -- not recommended to change
-          lsp_format = "fallback", -- not recommended to change
-        },
-        formatters_by_ft = {
-          lua = { "stylua" },
-          fish = { "fish_indent" },
-          sh = { "shfmt" },
-        },
-        -- The options you set here will be merged with the builtin formatters.
-        -- You can also define any custom formatters here.
-        ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
-        formatters = {
-          injected = { options = { ignore_errors = true } },
-          -- # Example of using dprint only when a dprint.json file is present
-          -- dprint = {
-          --   condition = function(ctx)
-          --     return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
-          --   end,
-          -- },
-          --
-          -- # Example of using shfmt with extra args
-          -- shfmt = {
-          --   prepend_args = { "-i", "2", "-ci" },
-          -- },
-        },
-      }
-      return opts
-    end,
+    src = "https://github.com/mason-org/mason.nvim.git",
+    name = "mason.nvim",
   },
-}
+  {
+    src = "https://github.com/stevearc/conform.nvim.git",
+    name = "conform.nvim",
+  },
+})
+
+vim.defer_fn(function()
+  local mason_ok, mason = pcall(require, "mason")
+  if not mason_ok then
+    vim.notify("mason.nvim not found", vim.log.levels.ERROR)
+    return
+  end
+
+  local conform_ok, conform = pcall(require, "conform")
+  if not conform_ok then
+    vim.notify("conform.nvim not found", vim.log.levels.ERROR)
+    return
+  end
+
+  mason.setup()
+  conform.setup({
+    default_format_opts = {
+      timeout_ms = 3000,
+      async = false, -- not recommended to change
+      quiet = false, -- not recommended to change
+      lsp_format = "fallback", -- not recommended to change
+    },
+    formatters_by_ft = {
+      lua = { "stylua" },
+      fish = { "fish_indent" },
+      sh = { "shfmt" },
+      go = { "golangci-lint" },
+      typescript = { "eslint_d" },
+      javascript = { "eslint_d" },
+    },
+  })
+end, 100)

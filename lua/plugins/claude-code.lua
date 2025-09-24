@@ -1,15 +1,18 @@
-return {
-  "greggh/claude-code.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim", -- Required for git operations
+vim.pack.add({
+  {
+    src = "https://github.com/greggh/claude-code.nvim.git",
+    name = "claude-code.nvim",
   },
-  keys = {
-    { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude Code" },
-    { "<leader>at", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude Code" },
-    { "<leader>ac", "<cmd>ClaudeCode --continue<cr>", desc = "Claude Code Continue" },
-    { "<leader>av", "<cmd>ClaudeCode --verbose<cr>", desc = "Claude Code Verbose" },
-  },
-  opts = {
+})
+
+vim.defer_fn(function()
+  local ok, claude_code = pcall(require, "claude-code")
+  if not ok then
+    vim.notify("claudecode.nvim not found", vim.log.levels.ERROR)
+    return
+  end
+  claude_code.setup({
+    -- Terminal window settings
     window = {
       split_ratio = 0.3, -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
       position = "vertical", -- Position of the window: "botright", "topleft", "vertical", "float", etc.
@@ -57,8 +60,21 @@ return {
     },
     -- Keymaps
     keymaps = {
+      -- toggle = {
+      --   normal = "<C-,>", -- Normal mode keymap for toggling Claude Code, false to disable
+      --   terminal = "<C-,>", -- Terminal mode keymap for toggling Claude Code, false to disable
+      --   variants = {
+      --     continue = "<leader>cC", -- Normal mode keymap for Claude Code with continue flag
+      --     verbose = "<leader>cV", -- Normal mode keymap for Claude Code with verbose flag
+      --   },
+      -- },
       window_navigation = true, -- Enable window navigation keymaps (<C-h/j/k/l>)
       scrolling = true, -- Enable scrolling keymaps (<C-f/b>) for page up/down
     },
-  },
-}
+  })
+
+  vim.keymap.set("n", "<leader>aa", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude Code" })
+  vim.keymap.set("n", "<leader>at", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude Code" })
+  vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode --continue<cr>", { desc = "Claude Code Continue" })
+  vim.keymap.set("n", "<leader>av", "<cmd>ClaudeCode --verbose<cr>", { desc = "Claude Code Verbose" })
+end, 100)
