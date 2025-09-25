@@ -13,6 +13,11 @@ vim.pack.add({
     src = "https://github.com/mason-org/mason-lspconfig.nvim.git",
     name = "mason-lspconfig.nvim",
   },
+  -- Conform (Formatter)
+  {
+    src = "https://github.com/stevearc/conform.nvim.git",
+    name = "conform.nvim",
+  },
 })
 
 vim.defer_fn(function()
@@ -43,6 +48,29 @@ vim.defer_fn(function()
     },
   })
 
+  local conform_ok, conform = pcall(require, "conform")
+  if not conform_ok then
+    vim.notify("conform.nvim not found", vim.log.levels.ERROR)
+    return
+  end
+
+  conform.setup({
+    default_format_opts = {
+      timeout_ms = 1000,
+      async = false,
+      quiet = false,
+      lsp_format = "fallback",
+    },
+    formatters_by_ft = {
+      lua = { "stylua" },
+      fish = { "fish_indent" },
+      sh = { "shfmt" },
+      go = { "golangci-lint" },
+      typescript = { "eslint_d" },
+      javascript = { "eslint_d" },
+    },
+  })
+
   -- Keymaps
   local map = vim.keymap.set
   map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
@@ -50,6 +78,7 @@ vim.defer_fn(function()
   map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
   map("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
   map("n", "<leader><leader>", function()
-    vim.lsp.buf.format({ async = true })
-  end, { desc = "LSP Format" })
+    require("conform").format({ async = true })
+    print("Formatting...")
+  end, { desc = "Format" })
 end, 100)
