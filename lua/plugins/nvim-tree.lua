@@ -42,6 +42,7 @@ vim.defer_fn(function()
     },
     git = {
       enable = true,
+      ignore = false,
     },
   })
 
