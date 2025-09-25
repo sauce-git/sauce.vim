@@ -19,7 +19,6 @@ if hostname == "sauce-arch" then
     extra_groups = {
       -- Completion menu (nvim-cmp)
       "Pmenu",
-      "PmenuSel",
       "PmenuSbar",
       "PmenuThumb",
       -- Floating windows
