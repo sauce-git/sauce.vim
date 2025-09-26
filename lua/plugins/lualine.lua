@@ -78,4 +78,4 @@ vim.defer_fn(function()
     inactive_winbar = {},
     extensions = {},
   })
-end, 50)
+end, 10)

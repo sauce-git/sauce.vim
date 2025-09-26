@@ -49,4 +49,4 @@ vim.defer_fn(function()
   vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>")
 
   print("nvim-tree loaded")
-end, 50)
+end, 0)

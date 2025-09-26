@@ -17,4 +17,4 @@ vim.defer_fn(function()
   vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
 
   print("trouble.nvim loaded")
-end, 50)
+end, 30)

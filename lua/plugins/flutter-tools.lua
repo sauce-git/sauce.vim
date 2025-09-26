@@ -22,4 +22,4 @@ vim.defer_fn(function()
 
   flutter_tools.setup({})
   print("flutter-tools.nvim loaded")
-end, 200)
+end, 100)

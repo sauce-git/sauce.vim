@@ -80,4 +80,4 @@ vim.defer_fn(function()
       { name = "cmdline" },
     }),
   })
-end, 100)
+end, 0)

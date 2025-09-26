@@ -17,4 +17,4 @@ vim.defer_fn(function()
     trailing_stiffness = 0.5,
     distance_stop_animating = 0.5,
   })
-end, 50)
+end, 0)

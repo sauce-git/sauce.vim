@@ -48,4 +48,4 @@ vim.defer_fn(function()
   })
 
   print("nvim-treesitter loaded")
-end, 50)
+end, 0)

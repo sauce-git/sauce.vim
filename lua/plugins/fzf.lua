@@ -34,4 +34,4 @@ vim.defer_fn(function()
   vim.keymap.set("n", "<leader>/", "<cmd>FzfLua live_grep<cr>", { desc = "Live Grep" })
 
   print("fzf-lua loaded")
-end, 100)
+end, 20)

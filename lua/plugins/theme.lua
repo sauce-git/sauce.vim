@@ -146,4 +146,4 @@ vim.defer_fn(function()
   vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "open themery" })
 
   print("themery.nvim loaded")
-end, 50)
+end, 0)

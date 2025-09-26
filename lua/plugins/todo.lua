@@ -20,4 +20,4 @@ vim.defer_fn(function()
   vim.keymap.set("n", "<leader>xt", "<cmd>TodoTrouble<cr>", { desc = "Todo (Telescope)" })
 
   print("todo-comments.nvim loaded")
-end, 50)
+end, 30)

@@ -34,4 +34,4 @@ vim.defer_fn(function()
   })
 
   print("nvim-autopairs loaded")
-end, 50)
+end, 0)
