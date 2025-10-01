@@ -47,6 +47,7 @@ vim.defer_fn(function()
       "yamlls",
       "jsonls",
       "html",
+      "cssls",
     },
   })
 
