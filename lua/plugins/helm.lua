@@ -5,37 +5,44 @@ vim.pack.add({
   },
 })
 
--- Load vim-helm after treesitter to prevent conflicts
 vim.defer_fn(function()
-  -- Set up Helm file detection and settings
-  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.yaml", "*.yml" },
-    callback = function()
-      local path = vim.fn.expand("%:p")
-      local filename = vim.fn.expand("%:t")
-
-      -- Check if it's a Helm file by path or content
-      if string.match(path, "templates/") or
-          string.match(path, "charts/") or
-          string.match(path, "helm") or
-          string.match(filename, "values") or
-          string.match(filename, "Chart") then
-        vim.opt_local.backup = false
-        vim.opt_local.writebackup = false
-        vim.opt_local.swapfile = false
-        vim.bo.filetype = "helm"
-      end
-    end,
+  vim.filetype.add({
+    extension = {
+      yaml = function(path)
+        if vim.fs.find("Chart.yaml", {
+              path = vim.fs.dirname(path),
+              upward = true,
+            })[1] then
+          return "helm"
+        end
+        return "yaml"
+      end,
+      yml = function(path)
+        if vim.fs.find("Chart.yaml", {
+              path = vim.fs.dirname(path),
+              upward = true,
+            })[1] then
+          return "helm"
+        end
+        return "yaml"
+      end,
+      tpl = "helm",
+      tmpl = "helm",
+    },
+  })
+  vim.lsp.config("helm_ls", {
+    cmd = { "helm_ls", "serve" },
+    filetypes = { "helm", "helmfile", "yaml", "yml" },
+    root_dir = vim.fs.dirname(vim.fs.find({ "Chart.yaml" }, { upward = true })[1]),
+    settings = {
+      ["helm-ls"] = {
+        yamlls = {
+          path = "yaml-language-server",
+          enabledForFilesGlob = "*.{yaml,yml}",
+        },
+      },
+    },
   })
 
-  -- Explicit Helm filetype settings
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "helm",
-    callback = function()
-      vim.opt_local.backup = false
-      vim.opt_local.writebackup = false
-      vim.opt_local.swapfile = false
-    end,
-  })
-end, 100) -- Load with delay after treesitter
-
+  vim.lsp.enable("helm_ls")
+end, 100) -- Load after LSP setup
