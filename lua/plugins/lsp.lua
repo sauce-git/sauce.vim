@@ -23,15 +23,9 @@ vim.pack.add({
 vim.defer_fn(function()
   -- Mason Setup
   local mason_ok, mason = pcall(require, "mason")
-  if not mason_ok then
-    vim.notify("mason.nvim not found", vim.log.levels.ERROR)
-    return
-  end
-
-  -- Mason LSPconfig Setup
   local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-  if not mason_lspconfig_ok then
-    vim.notify("mason-lspconfig.nvim not found", vim.log.levels.ERROR)
+  if not (mason_ok and mason_lspconfig_ok) then
+    vim.notify("LSP Config dependencies not found", vim.log.levels.ERROR)
     return
   end
 
