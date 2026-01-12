@@ -46,7 +46,7 @@ vim.defer_fn(function()
       "jsonls",
       "html",
       "cssls",
-      "helm_ls"
+      "helm_ls",
     },
   })
 

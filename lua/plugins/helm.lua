@@ -9,19 +9,23 @@ vim.defer_fn(function()
   vim.filetype.add({
     extension = {
       yaml = function(path)
-        if vim.fs.find("Chart.yaml", {
-              path = vim.fs.dirname(path),
-              upward = true,
-            })[1] then
+        if
+          vim.fs.find("Chart.yaml", {
+            path = vim.fs.dirname(path),
+            upward = true,
+          })[1]
+        then
           return "helm"
         end
         return "yaml"
       end,
       yml = function(path)
-        if vim.fs.find("Chart.yaml", {
-              path = vim.fs.dirname(path),
-              upward = true,
-            })[1] then
+        if
+          vim.fs.find("Chart.yaml", {
+            path = vim.fs.dirname(path),
+            upward = true,
+          })[1]
+        then
           return "helm"
         end
         return "yaml"
