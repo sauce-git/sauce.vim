@@ -6,10 +6,9 @@ vim.pack.add({
 })
 
 vim.defer_fn(function()
-  local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+  local ok, treesitter = pcall(require, "nvim-treesitter")
   if not ok then
     vim.notify("nvim-treesitter not found", vim.log.levels.ERROR)
-    return
   end
 
   treesitter.setup({
@@ -46,6 +45,5 @@ vim.defer_fn(function()
       enable_autocmd = false,
     },
   })
-
-  print("nvim-treesitter loaded")
+  vim.notify("nvim-treesitter loaded", vim.log.levels.INFO)
 end, 0)
