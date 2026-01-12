@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/akinsho/toggleterm.nvim.git",
     name = "toggleterm.nvim",
+    version = "v2.13.1",
   },
 })
 

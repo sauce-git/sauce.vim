@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/folke/trouble.nvim.git",
     name = "trouble.nvim",
+    version = "v3.7.1",
   },
 })
 

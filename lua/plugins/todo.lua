@@ -2,10 +2,12 @@ vim.pack.add({
   {
     src = "https://github.com/folke/trouble.nvim.git",
     name = "trouble.nvim",
+    version = "v3.7.1",
   },
   {
     src = "https://github.com/folke/todo-comments.nvim.git",
     name = "todo-comments.nvim",
+    version = "v1.5.0",
   },
 })
 

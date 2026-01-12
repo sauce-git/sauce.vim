@@ -63,10 +63,12 @@ vim.pack.add({
   {
     src = "https://github.com/scottmckendry/cyberdream.nvim.git",
     name = "cyberdream.nvim",
+    version = "v5.3.0",
   },
   {
     src = "https://github.com/zaldih/themery.nvim.git",
     name = "themery.nvim",
+    version = "v2.0.1",
   },
 })
 

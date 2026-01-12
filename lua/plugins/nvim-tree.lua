@@ -2,10 +2,12 @@ vim.pack.add({
   {
     src = "https://github.com/nvim-tree/nvim-web-devicons.git",
     name = "nvim-web-devicons",
+    version = "v0.100",
   },
   {
     src = "https://github.com/nvim-tree/nvim-tree.lua.git",
     name = "nvim-tree.lua",
+    version = "v1.15.0",
   },
 })
 

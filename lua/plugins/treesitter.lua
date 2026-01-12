@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter.git",
     name = "nvim-treesitter",
+    version = "v0.9.3",
   },
 })
 

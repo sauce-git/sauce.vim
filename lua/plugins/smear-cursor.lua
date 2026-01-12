@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/sphamba/smear-cursor.nvim",
     name = "smear-cursor.nvim",
+    version = "v0.6.0",
   },
 })
 

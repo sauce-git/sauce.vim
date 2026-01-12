@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/github/copilot.vim.git",
     name = "copilot",
+    version = "v1.59.0",
   },
 })
 

@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/hrsh7th/nvim-cmp.git",
     name = "nvim-cmp",
+    version = "v0.0.2",
   },
   {
     src = "https://github.com/hrsh7th/cmp-nvim-lsp.git",
@@ -22,6 +23,7 @@ vim.pack.add({
   {
     src = "https://github.com/L3MON4D3/LuaSnip.git",
     name = "LuaSnip",
+    version = "v2.4.1",
   },
   {
     src = "https://github.com/saadparwaiz1/cmp_luasnip.git",

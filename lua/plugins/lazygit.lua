@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/nvim-lua/plenary.nvim.git",
     name = "plenary.nvim",
+    version = "v0.1.4",
   },
   {
     src = "https://github.com/kdheepak/lazygit.nvim.git",

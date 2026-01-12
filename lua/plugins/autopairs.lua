@@ -2,6 +2,7 @@ vim.pack.add({
   {
     src = "https://github.com/windwp/nvim-autopairs.git",
     name = "nvim-autopairs",
+    version = "0.10.0",
   },
 })
 
