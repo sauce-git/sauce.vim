@@ -52,7 +52,7 @@ if hostname == "sauce-arch" then
     },
   })
 
-  vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<CR>", { desc = "toggle transparency" })
+  vim.keymap.set("n", "<leader>ts", "<cmd>TransparentToggle<CR>", { desc = "toggle transparency" })
 end
 
 vim.pack.add({

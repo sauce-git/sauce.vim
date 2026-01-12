@@ -15,5 +15,5 @@ vim.defer_fn(function()
 
   toggleterm.setup({})
 
-  vim.keymap.set("n", "<C-/>", "<cmd>ToggleTerm<cr>", { desc = "toggle terminal" })
+  vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "toggle terminal" })
 end, 0)
