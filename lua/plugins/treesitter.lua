@@ -2,49 +2,36 @@ vim.pack.add({
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter.git",
     name = "nvim-treesitter",
-    version = "v0.9.3",
+    version = "v0.10.0",
+  },
+  {
+    src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git",
+    name = "nvim-treesitter-context",
+    version = "v1.0.0",
   },
 })
 
-vim.defer_fn(function()
-  local ok, treesitter = pcall(require, "nvim-treesitter")
-  if not ok then
-    vim.notify("nvim-treesitter not found", vim.log.levels.ERROR)
-    return
-  end
+local treesitter = require("nvim-treesitter")
 
-  -- Install parsers
-  local languages = {
+treesitter
+  .install({
     "c",
     "cpp",
-    "go",
     "lua",
     "python",
-    "rust",
-    "typescript",
     "javascript",
+    "typescript",
     "html",
     "css",
     "json",
-    "yaml",
-    "toml",
-    "markdown",
     "bash",
-  }
-
-  treesitter.install(languages)
-
-  -- Enable highlighting for all filetypes
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function()
-      local buf = vim.api.nvim_get_current_buf()
-      if not vim.b[buf].treesitter_enabled then
-        pcall(vim.treesitter.start)
-        vim.b[buf].treesitter_enabled = true
-      end
-    end,
+    "go",
+    "rust",
   })
+  :wait(3000000)
 
-  vim.notify("nvim-treesitter loaded", vim.log.levels.INFO)
-end, 0)
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})

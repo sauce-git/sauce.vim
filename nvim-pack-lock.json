@@ -122,7 +122,12 @@
     "nvim-treesitter": {
       "rev": "5a7e5638e7d220575b1c22c8a2e099b52231886e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git",
-      "version": "'v0.9.3'"
+      "version": "'v0.10.0'"
+    },
+    "nvim-treesitter-context": {
+      "rev": "ed1cf48d5af252248c55f50b9427e8ce883a2c6b",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context.git",
+      "version": "'v1.0.0'"
     },
     "nvim-web-devicons": {
       "rev": "803353450c374192393f5387b6a0176d0972b848",
@@ -158,6 +163,11 @@
       "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
       "src": "https://github.com/folke/trouble.nvim.git",
       "version": "'v3.7.1'"
+    },
+    "vim-go": {
+      "rev": "afdc93535605efaa4624b4dde296961add89750f",
+      "src": "https://github.com/fatih/vim-go.git",
+      "version": "'v1.29'"
     },
     "vim-helm": {
       "rev": "2c8525fd98e57472769d137317bca83e477858ce",
