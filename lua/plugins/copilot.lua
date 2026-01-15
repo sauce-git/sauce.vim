@@ -11,7 +11,7 @@ vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
   replace_keycodes = false,
 })
 
-vim.keymap.set("n", "<leader>cd", function()
+vim.keymap.set("n", "<leader>co", function()
   if vim.g.copilot_enabled == true then
     vim.g.copilot_enabled = false
     print("Copilot disabled")
