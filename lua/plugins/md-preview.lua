@@ -9,5 +9,5 @@ vim.pack.add({
 vim.defer_fn(function()
   vim.fn["mkdp#util#install"]()
 
-  vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
+  vim.keymap.set("n", "<leader>md", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 end, 50)
