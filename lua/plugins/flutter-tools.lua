@@ -23,6 +23,16 @@ vim.defer_fn(function()
     return
   end
 
-  flutter_tools.setup({})
+  flutter_tools.setup({
+    fvm = true,
+  })
+
+  vim.keymap.set("n", "<leader>flr", "<cmd>FlutterRun<cr>", { desc = "Flutter Run" })
+  vim.keymap.set("n", "<leader>flh", "<cmd>FlutterHotReload<cr>", { desc = "Flutter Hot Reload" })
+  vim.keymap.set("n", "<leader>flq", "<cmd>FlutterQuit<cr>", { desc = "Flutter Quit" })
+  vim.keymap.set("n", "<leader>fld", "<cmd>FlutterDevices<cr>", { desc = "Flutter Devices" })
+  vim.keymap.set("n", "<leader>fle", "<cmd>FlutterEmulators<cr>", { desc = "Flutter Emulators" })
+  vim.keymap.set("n", "<leader>flt", "<cmd>FlutterLogToggle<cr>", { desc = "Flutter Log Toggle" })
+
   print("flutter-tools.nvim loaded")
 end, 100)
