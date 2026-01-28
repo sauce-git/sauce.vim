@@ -47,8 +47,34 @@ vim.defer_fn(function()
       "html",
       "cssls",
       "helm_ls",
+      "eslint",
     },
   })
+
+  -- LSP Setup (Neovim 0.11+ vim.lsp.config)
+  vim.lsp.config("ts_ls", {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+  })
+
+  vim.lsp.config("eslint", {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+  })
+
+  vim.lsp.enable("ts_ls", "eslint")
 
   local conform_ok, conform = pcall(require, "conform")
   if not conform_ok then

@@ -21,6 +21,8 @@ treesitter
     "python",
     "javascript",
     "typescript",
+    "tsx",
+    "jsx",
     "html",
     "css",
     "json",
