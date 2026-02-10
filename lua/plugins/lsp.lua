@@ -48,6 +48,7 @@ vim.defer_fn(function()
       "cssls",
       "helm_ls",
       "eslint",
+      "biome",
     },
   })
 
