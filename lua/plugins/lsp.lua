@@ -95,8 +95,10 @@ vim.defer_fn(function()
       fish = { "fish_indent" },
       sh = { "shfmt" },
       go = { "golangci-lint" },
-      typescript = { "eslint_d" },
-      javascript = { "eslint_d" },
+      typescript = { "prettier", "eslint_d" },
+      javascript = { "prettier", "eslint_d" },
+      typescriptreact = { "prettier", "eslint_d" },
+      javascriptreact = { "prettier", "eslint_d" },
     },
   })
 
