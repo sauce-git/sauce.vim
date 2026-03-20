@@ -12,7 +12,7 @@ vim.pack.add({
 vim.defer_fn(function()
   require("claudecode").setup()
 
-  vim.keymap.set("n", "<leader>aa", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
+  vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
   vim.keymap.set("n", "<leader>af", "<cmd>ClaudeCodeFocus<cr>", { desc = "Focus Claude" })
   vim.keymap.set("n", "<leader>ar", "<cmd>ClaudeCode --resume<cr>", { desc = "Resume Claude" })
   vim.keymap.set("n", "<leader>aC", "<cmd>ClaudeCode --continue<cr>", { desc = "Continue Claude" })
