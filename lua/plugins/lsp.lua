@@ -49,6 +49,7 @@ vim.defer_fn(function()
       "helm_ls",
       "eslint",
       "biome",
+      "prismals",
     },
   })
 

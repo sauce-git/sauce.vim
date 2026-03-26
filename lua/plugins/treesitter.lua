@@ -29,6 +29,7 @@ treesitter
     "bash",
     "go",
     "rust",
+    "prisma",
   })
   :wait(3000000)
 
