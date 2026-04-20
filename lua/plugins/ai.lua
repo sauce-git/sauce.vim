@@ -4,6 +4,8 @@
 
 local aider = {}
 
+local AIDER_BUF_NAME = "aider://terminal"
+
 -- Provider config (add/remove providers here)
 aider.providers = {
   {
@@ -24,12 +26,37 @@ aider.providers = {
   -- },
 }
 
+-- Helper: Find window containing the Aider buffer
+local function get_aider_win()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.api.nvim_buf_get_name(buf) == AIDER_BUF_NAME then
+      return win
+    end
+  end
+  return nil
+end
+
+-- Helper: Delete the Aider buffer (cleanup)
+local function clean_aider_buf()
+  local buf = vim.fn.bufnr(AIDER_BUF_NAME)
+  if buf ~= -1 then
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
+end
+
 -- Open aider in a right vertical split
 local function open_aider(model)
+  -- Ensure no old buffer exists before opening
+  clean_aider_buf()
+
   vim.cmd("vsplit")
   vim.cmd("wincmd L")
   vim.cmd("vertical resize 80")
   vim.cmd("terminal aider --model " .. model)
+
+  -- Set unique name for easy identification
+  vim.api.nvim_buf_set_name(0, AIDER_BUF_NAME)
   vim.cmd("startinsert")
 end
 
@@ -77,6 +104,17 @@ end
 
 -- Select provider (skip if only one configured)
 local function aider_start()
+  -- Toggle OFF: If window is open, close it and clean up
+  local win = get_aider_win()
+  if win then
+    vim.api.nvim_win_close(win, true)
+    clean_aider_buf()
+    return
+  end
+
+  -- Toggle ON: Clean up any hidden buffer, then open modal
+  clean_aider_buf()
+
   if #aider.providers == 1 then
     select_model(aider.providers[1])
     return
