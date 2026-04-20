@@ -37,9 +37,14 @@ local function get_aider_win()
   return nil
 end
 
+-- Helper: Find buffer by name
+local function get_aider_buf()
+  return vim.fn.bufnr(AIDER_BUF_NAME)
+end
+
 -- Helper: Delete the Aider buffer (cleanup)
 local function clean_aider_buf()
-  local buf = vim.fn.bufnr(AIDER_BUF_NAME)
+  local buf = get_aider_buf()
   if buf ~= -1 then
     vim.api.nvim_buf_delete(buf, { force = true })
   end
@@ -47,7 +52,7 @@ end
 
 -- Open aider in a right vertical split
 local function open_aider(model)
-  -- Ensure no old buffer exists before opening
+  -- Ensure no old buffer exists before opening a fresh one
   clean_aider_buf()
 
   vim.cmd("vsplit")
@@ -104,17 +109,27 @@ end
 
 -- Select provider (skip if only one configured)
 local function aider_start()
-  -- Toggle OFF: If window is open, close it and clean up
   local win = get_aider_win()
+
+  -- 1. If window is open, close it (hide) but keep buffer
   if win then
     vim.api.nvim_win_close(win, true)
-    clean_aider_buf()
     return
   end
 
-  -- Toggle ON: Clean up any hidden buffer, then open modal
-  clean_aider_buf()
+  -- 2. If window is closed, check if buffer exists
+  local buf = get_aider_buf()
+  if buf ~= -1 then
+    -- Restore the buffer in a new split
+    vim.cmd("vsplit")
+    vim.cmd("wincmd L")
+    vim.cmd("vertical resize 80")
+    vim.api.nvim_win_set_buf(0, buf)
+    vim.cmd("startinsert")
+    return
+  end
 
+  -- 3. No window, no buffer -> Start new session (Provider selection)
   if #aider.providers == 1 then
     select_model(aider.providers[1])
     return
