@@ -47,6 +47,10 @@
       "src": "https://github.com/github/copilot.vim.git",
       "version": "'v1.59.0'"
     },
+    "cursor-agent.nvim": {
+      "rev": "e0b86624ccfd5f98af46a780049037fa07521331",
+      "src": "https://github.com/xTacobaco/cursor-agent.nvim.git"
+    },
     "cyberdream.nvim": {
       "rev": "7464438b099c0ebcd42c4b6dd9abbd6ed93cb7f8",
       "src": "https://github.com/scottmckendry/cyberdream.nvim.git",
