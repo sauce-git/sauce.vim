@@ -1,72 +1,61 @@
 -- ============================================================
--- Aider Integration
+-- AI Tools Integration (Aider, OpenCode, Claude Code)
 -- ============================================================
 
-local aider = {}
+local M = {}
 
-local AIDER_BUF_NAME = "aider://terminal"
-
--- Provider config (add/remove providers here)
-aider.providers = {
-  {
-    name = "OpenRouter",
-    prefix = "openrouter/",
-    list_cmd = { "aider", "--list-models", "openrouter/" },
-  },
-  -- Examples:
-  -- {
-  --   name = "Anthropic",
-  --   prefix = "anthropic/",
-  --   list_cmd = { "aider", "--list-models", "anthropic/" },
-  -- },
-  -- {
-  --   name = "Ollama (local)",
-  --   prefix = "ollama/",
-  --   list_cmd = { "aider", "--list-models", "ollama/" },
-  -- },
-}
-
--- Helper: Find window containing the Aider buffer
-local function get_aider_win()
+-- Helper: Find window by buffer name
+local function get_win(buf_name)
+  local buf = vim.fn.bufnr(buf_name)
+  if buf == -1 then
+    return nil
+  end
   for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_buf_get_name(buf) == AIDER_BUF_NAME then
+    if vim.api.nvim_win_get_buf(win) == buf then
       return win
     end
   end
   return nil
 end
 
--- Helper: Find buffer by name
-local function get_aider_buf()
-  return vim.fn.bufnr(AIDER_BUF_NAME)
+-- Helper: Get buffer ID by name
+local function get_buf(buf_name)
+  return vim.fn.bufnr(buf_name)
 end
 
--- Helper: Delete the Aider buffer (cleanup)
-local function clean_aider_buf()
-  local buf = get_aider_buf()
-  if buf ~= -1 then
-    vim.api.nvim_buf_delete(buf, { force = true })
-  end
-end
-
--- Open aider in a right vertical split
-local function open_aider(model)
-  -- Ensure no old buffer exists before opening a fresh one
-  clean_aider_buf()
-
+-- Helper: Open vertical split with specific buffer
+local function open_split_with_buf(buf)
   vim.cmd("vsplit")
   vim.cmd("wincmd L")
   vim.cmd("vertical resize 80")
-  vim.cmd("terminal aider --model " .. model)
-
-  -- Set unique name for easy identification
-  vim.api.nvim_buf_set_name(0, AIDER_BUF_NAME)
+  vim.api.nvim_win_set_buf(0, buf)
   vim.cmd("startinsert")
 end
 
--- Async load model list then prompt selection
-local function select_model(provider)
+-- Helper: Open terminal in split with specific name and command
+local function open_terminal(buf_name, cmd)
+  vim.cmd("vsplit")
+  vim.cmd("wincmd L")
+  vim.cmd("vertical resize 80")
+  vim.cmd("terminal " .. cmd)
+  vim.api.nvim_buf_set_name(0, buf_name)
+  vim.cmd("startinsert")
+end
+
+-- ============================================================
+-- Aider Specific Logic
+-- ============================================================
+
+local aider_providers = {
+  {
+    name = "OpenRouter",
+    prefix = "openrouter/",
+    list_cmd = { "aider", "--list-models", "openrouter/" },
+  },
+  -- Add more providers here if needed
+}
+
+local function select_aider_model(provider)
   vim.notify("Loading models... (" .. provider.name .. ")", vim.log.levels.INFO)
 
   vim.system(
@@ -99,7 +88,7 @@ local function select_model(provider)
           end,
         }, function(choice)
           if choice then
-            open_aider(choice)
+            open_terminal("aider://terminal", "aider --model " .. choice)
           end
         end)
       end)
@@ -107,9 +96,52 @@ local function select_model(provider)
   )
 end
 
--- Select provider (skip if only one configured)
-local function aider_start()
-  local win = get_aider_win()
+local function start_aider()
+  if #aider_providers == 1 then
+    select_aider_model(aider_providers[1])
+    return
+  end
+
+  vim.ui.select(aider_providers, {
+    prompt = "Select provider:",
+    format_item = function(p)
+      return p.name
+    end,
+  }, function(choice)
+    if choice then
+      select_aider_model(choice)
+    end
+  end)
+end
+
+-- ============================================================
+-- Tool Definitions
+-- ============================================================
+
+local tools = {
+  {
+    name = "OpenCode",
+    buf_name = "opencode://terminal",
+    cmd = "opencode",
+  },
+  {
+    name = "Claude Code",
+    buf_name = "claude://terminal",
+    cmd = "claude",
+  },
+  {
+    name = "Aider",
+    buf_name = "aider://terminal",
+    start = start_aider, -- Custom start logic for provider/model selection
+  },
+}
+
+-- ============================================================
+-- Main Logic
+-- ============================================================
+
+local function handle_tool(tool)
+  local win = get_win(tool.buf_name)
 
   -- 1. If window is open, close it (hide) but keep buffer
   if win then
@@ -118,34 +150,35 @@ local function aider_start()
   end
 
   -- 2. If window is closed, check if buffer exists
-  local buf = get_aider_buf()
+  local buf = get_buf(tool.buf_name)
   if buf ~= -1 then
     -- Restore the buffer in a new split
-    vim.cmd("vsplit")
-    vim.cmd("wincmd L")
-    vim.cmd("vertical resize 80")
-    vim.api.nvim_win_set_buf(0, buf)
-    vim.cmd("startinsert")
+    open_split_with_buf(buf)
     return
   end
 
-  -- 3. No window, no buffer -> Start new session (Provider selection)
-  if #aider.providers == 1 then
-    select_model(aider.providers[1])
-    return
+  -- 3. No window, no buffer -> Start new session
+  if tool.start then
+    tool.start()
+  else
+    open_terminal(tool.buf_name, tool.cmd)
   end
+end
 
-  vim.ui.select(aider.providers, {
-    prompt = "Select provider:",
-    format_item = function(p) return p.name end,
+local function ai_start()
+  vim.ui.select(tools, {
+    prompt = "Select AI Tool:",
+    format_item = function(t)
+      return t.name
+    end,
   }, function(choice)
     if choice then
-      select_model(choice)
+      handle_tool(choice)
     end
   end)
 end
 
 -- Register keymap
 vim.defer_fn(function()
-  vim.keymap.set("n", "<leader>ai", aider_start, { desc = "Run Aider" })
+  vim.keymap.set("n", "<leader>ai", ai_start, { desc = "Open AI Tool" })
 end, 0)
