@@ -50,6 +50,7 @@ vim.defer_fn(function()
       "eslint",
       "biome",
       "terraformls",
+      "astro",
     },
   })
 
