@@ -29,6 +29,7 @@ treesitter
     "bash",
     "go",
     "rust",
+    "astro",
   })
   :wait(3000000)
 
