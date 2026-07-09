@@ -38,6 +38,7 @@ vim.defer_fn(function()
     ensure_installed = {
       "lua_ls",
       "pyright",
+      "ruff",
       "ts_ls",
       "gopls",
       "rust_analyzer",
@@ -106,6 +107,14 @@ vim.defer_fn(function()
 
   -- Keymaps
   local map = vim.keymap.set
+  map("n", "<leader>rs", function()
+    vim.cmd("lsp stop")
+    if vim.bo.buftype == "" then
+      vim.cmd("edit")
+    else
+      vim.cmd("doautocmd FileType")
+    end
+  end, { desc = "Restart LSP" })
   map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
   map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
   map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
