@@ -150,5 +150,5 @@ local function ai_select()
   end)
 end
 
-vim.keymap.set({ "n", "t" }, "<leader>ai", ai_toggle, { desc = "Toggle AI Tool" })
-vim.keymap.set({ "n", "t" }, "<leader>aI", ai_select, { desc = "Select AI Tool" })
+vim.keymap.set({ "n" }, "<leader>ai", ai_toggle, { desc = "Toggle AI Tool" })
+vim.keymap.set({ "n" }, "<leader>aI", ai_select, { desc = "Select AI Tool" })
