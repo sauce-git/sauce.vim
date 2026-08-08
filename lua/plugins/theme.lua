@@ -1,6 +1,6 @@
 local hostname = vim.fn.hostname()
 
-if hostname == "sauce-arch" then
+if hostname == "sauce" then
   vim.pack.add({
     {
       src = "https://github.com/tribela/transparent.nvim.git",
